@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.lcp.app.entity.Study;
 import com.lcp.app.service.StudyService;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/v1/studies")
 public class StudyController {

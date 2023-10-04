@@ -11,11 +11,15 @@ public interface CustomerService {
 	
 	Customer getCustomerById(Long id);
 	
+	Customer getCustomerByEmail(String Email);
+	
 	List<Customer> getAllCustomers();
 	
 	Customer updateCustomer(Customer customer, Long id);
 	
 	Customer deleteCustomer(Long id);
+	
+	Customer loginCustomer(String email, String password);
 	
 	List <Customer> getCustomerByName(String name);
 	

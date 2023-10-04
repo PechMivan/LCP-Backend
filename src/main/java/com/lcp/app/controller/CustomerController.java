@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.lcp.app.entity.Customer;
 import com.lcp.app.service.CustomerService;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/v1/customers")
 public class CustomerController {
@@ -23,6 +23,13 @@ public class CustomerController {
 	public  ResponseEntity< Customer > createCustomer(@RequestBody Customer customer) {
 		Customer newCustomer = customerService.createCustomer(customer);
 		return new ResponseEntity<>(newCustomer, HttpStatus.CREATED); // Status 201
+	}
+	
+	@PostMapping("login")
+	public  ResponseEntity< Customer > loginCustomer(@RequestBody Customer customer) {
+		System.out.println(customer);
+		Customer existingCustomer = customerService.loginCustomer(customer.getEmail(), customer.getPassword());
+		return new ResponseEntity<>(existingCustomer, HttpStatus.OK); // Status 200
 	}
 	
 	@GetMapping("{id}")

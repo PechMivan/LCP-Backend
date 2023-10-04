@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.lcp.app.entity.Appointment;
 import com.lcp.app.service.AppointmentService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/v1/appointments")
 public class AppointmentController {
@@ -17,15 +18,22 @@ public class AppointmentController {
 	@Autowired
 	AppointmentService appointmentService;
 	
+
 	@PostMapping
 	public  ResponseEntity< Appointment > createAppointment(@RequestBody Appointment appointment) {
 		Appointment newAppointment = appointmentService.createAppointment(appointment);
 		return new ResponseEntity<>(newAppointment, HttpStatus.CREATED); // Status 201
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("private/{id}")
 	public ResponseEntity< Appointment > getAppointmentById(@PathVariable Long id){
 		Appointment appointment = appointmentService.getAppointmentById(id);
+		return new ResponseEntity<>(appointment, HttpStatus.OK); // Status 200
+	}
+	
+	@GetMapping("{uuid}")
+	public ResponseEntity< Appointment > getAppointmentByUuid(@PathVariable String uuid){
+		Appointment appointment = appointmentService.getAppointmentByUuid(uuid);
 		return new ResponseEntity<>(appointment, HttpStatus.OK); // Status 200
 	}
 	
@@ -45,6 +53,12 @@ public class AppointmentController {
 	public ResponseEntity< Appointment > deleteAppointment(@PathVariable Long id){
 		Appointment appointment = appointmentService.deleteAppointment(id);
 		return new ResponseEntity<>(appointment, HttpStatus.OK); // Status 200
+	}
+	
+	@GetMapping("customer/{id}")
+	public ResponseEntity< List<Appointment> > getAllAppointmentsByCustomerId(@PathVariable Long id){
+		List<Appointment> appointments = appointmentService.getAllAppointmentsByCustomerId(id);
+		return new ResponseEntity<>( appointments, HttpStatus.OK );
 	}
 	
 }

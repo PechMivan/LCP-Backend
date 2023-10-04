@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import com.lcp.app.entity.Category;
 import com.lcp.app.service.CategoryService;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/v1/categories")
 public class CategoryController {
 
 	@Autowired
 	CategoryService categoryService;
+	
 	
 	@PostMapping
 	public  ResponseEntity< Category > createCategory(@RequestBody Category category) {
