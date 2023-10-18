@@ -1,6 +1,7 @@
 package com.lcp.app.service.impl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +23,7 @@ public class CustomerServiceImpl implements CustomerService{
        if(existingCustomer != null) {
     	   throw new IllegalStateException("User with email" + customer.getEmail() + "already exists");
        }
+	   customer.setUuid(UUID.randomUUID().toString());
        String encryptedPassword = bcrypt.encode(customer.getPassword());
        customer.setPassword(encryptedPassword);
        return saveCustomer(customer);

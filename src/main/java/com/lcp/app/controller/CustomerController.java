@@ -27,7 +27,6 @@ public class CustomerController {
 	
 	@PostMapping("login")
 	public  ResponseEntity< Customer > loginCustomer(@RequestBody Customer customer) {
-		System.out.println(customer);
 		Customer existingCustomer = customerService.loginCustomer(customer.getEmail(), customer.getPassword());
 		return new ResponseEntity<>(existingCustomer, HttpStatus.OK); // Status 200
 	}

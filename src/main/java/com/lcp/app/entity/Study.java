@@ -1,14 +1,10 @@
 package com.lcp.app.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 import lombok.*;
 
 @Data
+@Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,10 +25,6 @@ private String waitTime;
 private boolean isActive;
 @ManyToOne
 @JoinColumn(name="fk_category_id", nullable=false)
-@JsonIgnore
 private Category category;
-@ManyToMany(mappedBy = "studies")
-@JsonIgnore
-private List<Appointment> appointments = new ArrayList<>();
 
 }

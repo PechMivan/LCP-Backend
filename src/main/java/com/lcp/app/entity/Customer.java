@@ -1,15 +1,12 @@
 package com.lcp.app.entity;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Data
+@Builder
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +18,8 @@ public class Customer {
 @GeneratedValue(strategy=GenerationType.IDENTITY )
 @Column(name="customer_id")
 private Long customerID;
+@Column(name="uuid", columnDefinition = "VARCHAR(255)", updatable = false, nullable = true)
+private String uuid;
 @Column(name="name", length=100, nullable=false)
 private String name;
 @Column(name="lastname", length=100, nullable=false)
@@ -42,8 +41,5 @@ private boolean isActive;
 @ManyToOne
 @JoinColumn(name="fk_role_id", nullable=false)
 private Role roles;
-//@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
-//@JsonIgnore
-////private List<Appointment> appointments = new ArrayList<>();
 
 }
