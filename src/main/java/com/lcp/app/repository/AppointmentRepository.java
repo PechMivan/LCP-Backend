@@ -11,5 +11,5 @@ public interface AppointmentRepository extends JpaRepository < Appointment, Long
 
 	Optional<Appointment> findByUuid(String uuid);
 	
-	Optional<List <Appointment>> findAllByCustomerCustomerID(Long id);
+	Optional<List <Appointment>> findAllByUserID(Long id);
 }

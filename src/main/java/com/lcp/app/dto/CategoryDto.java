@@ -1,10 +1,10 @@
 package com.lcp.app.dto;
 
-import lombok.Getter;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
+
+import com.lcp.app.entity.Study;
+
+import lombok.*;
 
 
 @AllArgsConstructor
@@ -14,4 +14,7 @@ import lombok.Setter;
 @Setter
 public class CategoryDto {
 
+	private String name;
+	private String urlCategory;
+	private List<Study> studies;
 }

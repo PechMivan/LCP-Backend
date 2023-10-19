@@ -6,18 +6,16 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Data
-@Builder
-@Entity
+@MappedSuperclass
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "customers")
 public class Customer {
 	
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY )
 @Column(name="customer_id")
-private Long customerID;
+private Long ID;
 @Column(name="uuid", columnDefinition = "VARCHAR(255)", updatable = false, nullable = true)
 private String uuid;
 @Column(name="name", length=100, nullable=false)
@@ -30,16 +28,12 @@ private String lastName2;
 private String sex;
 @Column(name="birthdate", columnDefinition = "date" , nullable=false)
 private LocalDate birthDate;
-@Column(name="email", length=200, unique = true, nullable=false)
-private String email;
 @Column(name="phonenumber", length=15, nullable=false)
 private String phonenumber;
-@Column(name="password", length=64, nullable=false)
-private String password;
 @Column(name="active", columnDefinition="boolean default true", nullable=false)
 private boolean isActive;
 @ManyToOne
 @JoinColumn(name="fk_role_id", nullable=false)
-private Role roles;
+private Role role;
 
 }

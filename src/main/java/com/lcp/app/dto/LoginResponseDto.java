@@ -14,6 +14,6 @@ import lombok.Setter;
 @Setter
 public class LoginResponseDto {
 
-	private CustomerDTO customer;
+	private UserDTO user;
 	private String token;
 }

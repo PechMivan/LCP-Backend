@@ -70,7 +70,7 @@ public class AppoinmentServiceImpl implements AppointmentService {
 
 	@Override
 	public List<Appointment> getAllAppointmentsByCustomerId(Long id) {
-		return appointmentRepository.findAllByCustomerCustomerID(id)
+		return appointmentRepository.findAllByUserID(id)
 				.orElseThrow( ()-> new IllegalStateException("User has no appointments") );
 	}
 	

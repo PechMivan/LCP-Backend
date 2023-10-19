@@ -45,7 +45,7 @@ private String phonenumber;
 private String urlAnalisis;
 @ManyToOne
 @JoinColumn(name="fk_customer_id", nullable=true)
-private Customer customer;
+private User user;
 @ManyToMany
 @Fetch(FetchMode.JOIN)
 @JoinTable(
